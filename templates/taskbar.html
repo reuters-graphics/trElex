@@ -1,0 +1,34 @@
+<!-- This template contains logic that dictactes which task in the task bar will be active. 
+    The choices are 'active', 'issues', 'calendar' and 'running'. 
+    Any other input will keep all options as inactive -->
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-12 taskbar">
+        <div class="logo">
+            <img src="./images/taskbar-logo.png" />
+        </div>
+        <div class="task-item running <%= t.active === 'running' ? 'active' : ''%> hidden-sm-down">
+            <a href="https://graphics.reuters.com/USA-ELECTION/010091471JC/index.html" target="_blank">
+            <%= gettext("Who's running?")%>
+            </a>
+        </div>
+        <div class="task-separator <%= t.active === 'running' | t.active === 'calendar' ? 'd-none' : 'hidden-sm-down'%>"></div>
+        <div class="task-item hidden-sm-down calendar <%= t.active === 'calendar' ? 'active' : ''%>">
+            <a href="https://graphics.reuters.com/USA-ELECTION-CALENDAR/0100B31F26V/index.html" target="_blank">
+            <%= gettext("Election calendar") %>
+            </a>
+        </div>
+        <div class="task-separator <%= t.active === 'calendar' | t.active === 'issues' ? 'd-none' : 'hidden-sm-down'%>"></div>
+        <div class="task-item issues <%= t.active === 'issues' ? 'active' : ''%> hidden-sm-down">
+            <a href="https://graphics.reuters.com/USA-ELECTION-POLICIES/0100B5C33D8/index.html" target="_blank">
+            <%= gettext("Key issues") %>
+            </a>
+        </div>
+        <!-- <div class="task-separator <%= t.active === 'results' | t.active === 'issues' ? 'd-none' : 'hidden-sm-down'%>"></div> -->
+        <!-- <div class="task-item <%= t.active === 'results' ? 'active' : ''%> results hidden-sm-down">
+            <a href="#" target="_blank">
+            <%= gettext("Results") %>
+            </a>
+        </div> -->
+    </div>
+</div>

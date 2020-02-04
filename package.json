@@ -1,0 +1,41 @@
+{
+    "author": {
+        "name": "Chris Canipe",
+        "email": "chris.canipe@thompsonreuters.com",
+        "url": "http://graphics.reuters.com/"
+    },
+    "bundleDependencies": false,
+    "dependencies": {},
+    "deprecated": false,
+    "description": "Reuters election utilities",
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "faucet": "^0.0.1",
+        "jsdom": "^11.3.0",
+        "rollup": "^0.50.0",
+        "rollup-plugin-babel": "^3.0.2",
+        "rollup-plugin-uglify": "^2.0.1",
+        "tape": "^4.8.0",
+        "xo": "^0.18.2",
+        "topojson-client": "^3.0.0",
+        "d3": "^5.7.0"
+    },
+    "files": [
+        "geo-data", "images", "sass", "scripts", "templates"
+    ],
+    "homepage": "http://graphics.reuters.com/",
+    "keywords": [
+        "data visualisation",
+        "visual"
+    ],
+    "license": "MIT",
+    "module": "scripts/trElex.js",
+    "name": "trElex",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Matthew-Weber/ReutersCharter.git"
+    },
+    "scripts": {},
+    "version": "1.0"
+}
