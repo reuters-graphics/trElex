@@ -34,7 +34,7 @@
     "name": "trElex",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Matthew-Weber/ReutersCharter.git"
+        "url": "git+https://github.com/tr/graphics_trElex.git"
     },
     "scripts": {},
     "version": "1.0"
