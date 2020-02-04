@@ -9,11 +9,11 @@ const d3 = Object.assign({},
 
 let topojson = require("topojson-client");
 
-import theCities from "../data/cities.json";
-import statePlanes from "../data/statePlanes_fips.json";
+import theCities from "../geo-data/cities.json";
+import statePlanes from "../geo-data/statePlanes_fips.json";
 import setTooltip from "./tooltip.js";
 
-import theCounties from "../data/states/counties-19.topo.json";
+import theCounties from "../geo-data/states/counties-19.topo.json";
 
 import * as elexUtils from "./elexUtils.js";
 
