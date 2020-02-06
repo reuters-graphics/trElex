@@ -1,11 +1,14 @@
 {
-  "bluprint": "^0.2.0",
-  "name": "trElex",
-  "category": "Primary Elections",
-  "actions": [{
-  "action": "move",
-  "paths": [
-	    ["./scripts/elexUtils.js", "../scripts/elexUtils.js"]
-	  ],
+	"bluprint": "^0.2.0",
+	"name": "trElex",
+	"category": "Primary Elections",
+	"actions": [{
+		"action": "remove",
+		"paths": ["../package.json"]
+	}, {
+		"action": "move",
+		"paths": [
+			["package.json", "../package.json"]
+		]
 	}]
 }
