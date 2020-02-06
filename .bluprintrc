@@ -7,8 +7,6 @@
 		"paths": ["../package.json"]
 	}, {
 		"action": "move",
-		"paths": [
-			["package.json", "../package.json"]
-		]
+		"paths": [["package.json", "../package.json"]]
 	}]
 }
