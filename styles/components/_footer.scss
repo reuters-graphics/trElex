@@ -1,0 +1,32 @@
+.footer{
+    .center {
+        text-align: center;
+        width: calc(100% - 154px - 30px);
+    }
+    
+    min-height: 52px;    
+    margin-top: 0;
+    
+    .footer-logo{
+        width: 154px;
+    }
+
+    .navbar-nav{
+        margin: 5px 0 -5px 0;
+            
+        .nav-item{
+            padding: 0 $spacer-x / 2;
+            display: inline-block;
+            a{
+                font-family: $font-family-knowledge;
+                font-size: $font-size-xs;
+                text-transform: uppercase;
+                color: $gray-light;
+                &:hover{
+                    color: #FFFFFF;
+                    text-decoration:none;
+                }
+            }
+        }
+    }
+}

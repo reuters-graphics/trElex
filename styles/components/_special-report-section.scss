@@ -1,0 +1,178 @@
+.special-report-section{
+    background: #222;
+}
+.section-content-container{
+    position: relative;
+    z-index: $zindex-article-content;
+    padding-top: $spacer * 2;
+    padding-bottom: $spacer * 2;
+    background-color: #222;
+    @include media-breakpoint-up(sm){
+        background-color: rgba(0, 0, 0, .5);
+    }
+    
+    min-height: calc(100vh - 68px - 57px);
+    .section-article-container{
+        .section-article{
+            margin-bottom: $spacer * 2;
+            &::after{
+                content: "";
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: $gray-dark;
+                margin-top: $spacer * 2;
+            }
+        }
+        &:last-of-type{
+            .section-article{
+                &::after{
+                    display: none;
+                }
+            }
+        }
+        a, .subtitle, .description, .kicker{
+            color: #FFF;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+        p{
+            font-family: $font-family-sans-serif;
+            color: $gray-lighter;
+        }
+        .tail{
+            font-weight: bold;
+            font-size: $font-size-xs;
+            text-transform: uppercase;
+            color: $gray;
+        }
+        .time, .series-kicker{
+            font-size: $font-size-xs;
+            font-family: $font-family-sans-serif;
+            text-transform: uppercase;
+            border: 0;
+            padding: 0;
+            color: $gray-lighter;
+        }
+        .series-kicker{
+            margin-top: 0;
+        }
+        
+    }
+}
+
+
+
+.theme-light.special-report-section{
+    background: #FFF;
+    .section-masthead-caption {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .section-content-container{
+        @include media-breakpoint-up(sm){
+            background-color: rgba(255, 255, 255, .5);
+        }
+        a, .subtitle, .description, .kicker, p, .tail{
+            color: $gray-dark !important;
+        }
+    }
+}
+
+
+.special-report-section.homepage{
+    background-color: #222 !important;
+    .section-content-container{
+        background-color: #222 !important;
+        @include media-breakpoint-up(sm){
+            background-color: transparent;
+        }
+    }
+    .homepage-top-container, .homepage-bottom-container{
+        .series-subtitle{
+            color: #FFF;
+            text-align: center;
+        }
+    }
+    .homepage-top-container{
+        margin-top: $spacer * 4;
+        margin-bottom: $spacer * 4;
+        .series-subtitle{
+            font-weight: bold;
+            font-size: $font-size-3xl;
+            letter-spacing: -0.5px;
+
+        }
+        .list-group{
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            .list-group-item{
+                background: transparent;
+                border: 0;
+                padding: $spacer / 2;
+                a{
+                    color: $gray;
+                    font-size: 1rem;
+                    text-transform: uppercase; 
+                    cursor: pointer;
+                    font-family: $font-family-sans-serif;
+                }
+            }
+        }
+    }
+
+    
+}
+
+
+.section-bottom-container{
+    margin-bottom: $spacer * 2;
+    &::before{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: $gray-dark;
+        margin-top: $spacer * 2;
+    }
+    .series-subtitle{
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: $spacer * 3;
+        padding-top: $spacer * 2;
+        color: $gray;
+        font-size: 1rem;
+        text-transform: uppercase; 
+        font-family: $font-family-sans-serif;
+        font-weight: normal;
+    }
+    .item{
+        h4, time, span{
+            display: inline-block;
+            font-weight: normal;
+            font-family: $font-family-sans-serif;
+            a{
+                color: #FFF;
+            }
+        }
+        h4{
+            font-size: 1rem;
+        }
+        time, span{
+            color: $gray-light;
+        }
+        time{
+            margin-left: 5px;
+        }
+
+    }     
+    .month{
+        margin-top: $spacer;
+        color: $gray;
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-family: $font-family-sans-serif;
+    }    
+}

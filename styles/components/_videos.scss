@@ -1,0 +1,53 @@
+.video{
+    video{
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.video{
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;
+    &.small{
+        @include media-breakpoint-up(md){
+            float: right;        
+        }
+    }
+    .img-fluid{
+        width: 100%;
+    }
+    
+    figcaption{
+        //padding-top: $caption-padding-top;
+        &::before{
+            content: $fa-var-video;
+            display: inline-block;
+            margin-right: $spacer * .25;
+            font-family: $font-family-font-awesome;
+            color: $gray-lighter;
+        }
+    }
+    &.full{
+        figcaption{
+            @include make-col-ready();
+            @include make-col(12);
+        }
+    }
+}

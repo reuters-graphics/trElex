@@ -1,0 +1,195 @@
+//some basic column creation for the shell of the content. There wasn't a better place to put this.
+
+.special-report{
+    .series-kicker,
+    .series-title,
+    .series-subtitle,
+    .title-container,
+    .dek-container,
+    .meta-container,
+    .article-paragraph, 
+    .blockquote, 
+    .sidebar .sidebar-title, 
+    .sidebar .byline, 
+    div.video,
+    .signoff .article-row::before,
+    .share-in-article-container,
+    &.masthead-container .series-subtitle-mobile,
+    .carousel.img-text-width
+    {
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(sm){
+            @include make-col(12);
+        }
+        @include media-breakpoint-up(md){
+            @include make-col(9);
+        }
+        @include media-breakpoint-up(lg){
+            @include make-col-offset(1);
+            @include make-col(7);
+        }
+    }
+    .series-kicker,
+    .series-title,
+    .series-subtitle,
+    .meta-container,
+    .title-container
+    {
+        @include media-breakpoint-up(md){
+            @include make-col(11);
+        }
+        @include media-breakpoint-up(lg){
+            @include make-col-offset(1);
+            @include make-col(10);
+        }
+    }
+
+    
+}
+
+
+.special-report .carousel{
+    //@include media-breakpoint-up(sm){
+        @include make-col-ready();
+        @include make-col(12);
+        
+        .carousel-control-prev {
+            left: 15px;
+        }
+        .carousel-control-next {
+            right: 15px;
+        }
+    //}
+}
+
+
+article.special-report:last-of-type{
+    padding-bottom: 2rem;
+}
+
+//make sure all additional stories within this container have seaprators.
+.special-report-article-container:not(:first-of-type){
+    margin-top: $spacer * 2;
+    padding-top: $spacer * 2;
+    border-top: 1px solid $gray-lighter;
+}
+
+// In certain designs, we want to hide the title of the first story.
+// This may belong in the mastheads file, but it could make sense either here or there.
+.type-full-bleed-title-above, 
+.type-auto-crop-below, 
+.other-stories-container, 
+.masthead-container.full-bleed .caption, 
+.masthead-container.full-bleed .masthead-title-container,
+.masthead-caption
+{
+    position: relative;
+    z-index: $zindex-article-content;
+    background-color: $body-background-color; 
+    .special-report:first-of-type{
+        .title{
+            display: none;
+        }
+    }
+}
+.navbar.footer{
+    z-index: $zindex-article-content + 1;
+}
+
+
+//caption needs to be one higher to be on top of the container directly below it.
+.masthead-container.full-bleed .caption{
+    z-index: $zindex-article-content + 1;
+}
+
+
+
+
+
+
+
+
+
+// THEMES
+
+
+.theme-dark.special-report-article{
+    background-color: $dark-theme-bg; 
+    color: #FFF;
+
+    .type-full-bleed-title-above, 
+    .type-auto-crop-below, 
+    .other-stories-container, 
+    .masthead-container.full-bleed .caption, 
+    .masthead-caption,
+    
+    {
+        background-color: $dark-theme-bg; 
+        color: #FFF;
+    }
+
+    .list-group-item{
+        background-color: $dark-theme-bg; 
+    }
+
+    
+    .share-in-article-container .list-group .list-group-item a , 
+    .byline a,
+    .blockquote-footer,
+    .dek,
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6,
+    .related-container .list-group .list-group-item p,
+    .other-stories article a .other-series-detail p 
+    {
+        color: $gray-lighter !important;
+    }
+
+/*
+    .masthead-container.full-bleed .masthead-title-container{
+        background-color: #FFF;
+        .series-title, .series-subtitle, .series-kicker, .series-title a{
+            color:  $dark-theme-bg !important;
+        }
+    }
+
+    .auto-crop-title-bottom{
+        @media (min-width: 768px) and (min-height: 400px){
+            .masthead-title-container{
+                background-color: rgba(255, 255, 255, .5) !important;
+            }
+        }
+    }
+*/
+    .component-header{
+        border-bottom: 1px solid $dark-theme-border !important;
+    }
+    .blockquote::before, .blockquote::after{
+        background-color: $dark-theme-border !important;
+    }
+    .sidebar .sidebar-title, 
+    .signoff .article-row::before,
+    .special-report-article-container:not(:first-of-type),
+    .other-stories-container
+    {
+        border-top: 1px solid $dark-theme-border !important;
+    }
+
+    .special-report .carousel-indicators li.active{
+        background-color: #FFF;
+    }
+}
+
+.special-report-article{
+    .tooltip-inner{
+        background: $dark-theme-bg;
+        color: #FFF;
+        font-family: $font-family-sans-serif;
+        .tooltip-text{
+            color: #FFF;
+        }
+    }
+}
+
+

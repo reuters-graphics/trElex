@@ -1,0 +1,38 @@
+.related-container{
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;    
+    @include media-breakpoint-up(md){
+        float: right;        
+    }
+    
+    
+    .list-group{
+        .list-group-item{
+            padding: 0;
+            a{
+                text-decoration: none;
+            }
+            border: 0;
+            img{
+                float: left;
+                max-width: 90px;
+            }
+            p{
+                font-size: $font-size-sm;
+                font-family: $font-family-sans-serif;
+                color: $gray-dark !important;
+                margin-left: 105px;
+                padding-left: 0;
+                margin-bottom: 0;
+            }
+            &.no-image{
+                img{
+                    display: none;
+                }
+                p{
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

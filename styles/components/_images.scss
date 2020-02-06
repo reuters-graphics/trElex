@@ -1,0 +1,49 @@
+.image{
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;
+    &.small{
+        @include media-breakpoint-up(md){
+            float: right;        
+        }
+    }
+
+    &.tiny{
+        float: right; 
+        img{
+            padding: 0;
+            max-width: 90px !important;
+        }
+    }
+
+    .img-fluid{
+        width: 100%;
+    }
+
+    figcaption{
+        padding-top: $caption-padding-top;
+    }
+
+    &.full{
+        figcaption{
+            @include make-col-ready();
+            @include make-col(12);
+        }
+    }
+
+    &.cover{
+        .media-container{
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            @media (min-width: 992px) and (min-height: 600px){
+                min-height: 600px;
+                background-size: cover;
+                background-position: 50% 50%;
+                background-attachment: fixed;
+                img{
+                    display: none;
+                }
+            }
+        }
+    }
+}

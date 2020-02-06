@@ -13,11 +13,11 @@
     <div class="row">
         <div class="col-12 header">
             <div class="graphic-title"><%= gettext("Iowa")%></div>
-            <p class="graphic-subhead"><%= gettext("Live Results | Feb. 3, 2020")%> </p>
+            <p class="graphic-subhead"><%= gettext("Live Caucus Results | Feb. 3, 2020")%> </p>
+            <p class="timestamp"></p>
             <!-- TIME STAMP AND COUNTER FOR MOBILE -->
             <div class="timing-mobile hidden-sm-up">
-                <p class="timestamp">
-                </p>
+                <!-- <p class="timestamp"></p> -->
                 <div class="pulse-container">
                     <p class="pulse">
                         <i class="fas fa-circle" style="vertical-align:middle"></i>
@@ -43,10 +43,7 @@
                     </p>
                     <p class="counter"></p>
                 </div>
-                <p class="timestamp">
-                    <!-- <span class='updated'></span> -->
-                    <!-- &nbsp;<span id='counter'></span> -->
-                </p>
+                <!-- <p class="timestamp"></p> -->
             </div>
         </div>
         <div class="col-12">
@@ -60,9 +57,9 @@
         <div class="col-md-6 col-sm-12">
             <div class="reuters-chart chart"></div>
         </div>
-        <div class="col-md-12 col-lg-6">
-            <p class="graphic-source">The Iowa Democratic Party reported alignment numbers in 2020 in addition to State Delegate Equivalents (SDEs). "Final alignment" represents the number of people who caucused for each candidate in the final round after caucus-goers who lined up with candidates who failed to reach at least 15 percent in the first round are allowed to change groups.</p>
-            <p class="graphic-source">Candidate order, winner and percentage are based on State Delegate Equivalents (SDEs), which are the estimated number of state convention delegates each candidate receives based on final alignment.</p>
+        <div class="col-md-12 col-lg-8 note-block">
+            <p class="graphic-source">The Iowa Democratic Party reported alignment numbers in 2020 in addition to State Delegate Equivalents (SDEs). &#8220;Final alignment&#8221; represents the number of people who caucused for each candidate in the final round after caucus-goers who lined up with candidates who failed to reach at least 15 percent in the first round are allowed to change groups.</p>
+            <p class="graphic-source">Candidate order and percentage are based on State Delegate Equivalents (SDEs), which are the estimated number of state convention delegates each candidate receives based on final alignment. Results are reported by Edison Research for the National Election Pool, which calls the winner.</p>
         </div>
     </div>
 
@@ -81,14 +78,14 @@
         <div class="col-md-6 col-sm-6">
             <div class="reuters-chart chart"></div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12 col-lg-8 note-block">
             <p class='graphic-source'>The Republican Party conducts a straw poll at every precinct caucus. The results of the straw poll are the only numbers reported for the Republican Caucuses.</p>
         </div>
     </div>
         
     <div class="row">            
-        <div class="col-12 mt-1">
-            <p class="graphic-source"><%= gettext("Source: National Election Pool (NEP)")%><br /><%= gettext("Chris Canipe, Ally J. Levine and Sam Hart | REUTERS GRAPHICS")%></p>
+        <div class="col-md-12 col-lg-8 note-block mt-1">
+            <p class="graphic-source"><%= gettext("Source: Edison Research for the National Election Pool")%><br /><%= gettext("By Chris Canipe, Ally J. Levine and Sam Hart | REUTERS GRAPHICS")%></p>
         </div>
     </div>
 </div>

@@ -1,0 +1,22 @@
+<hr class="separator-related"/>
+
+<div class="container">
+	<div class="row justify-content-center mt-5 mb-4">
+		<div class="col-sm-12">
+			<p class="related-top"><%= gettext("More election coverage")%></p>
+		</div>
+	</div>
+	<div class="row">
+		<%t.text.forEach(function(d,i){%>
+			<%if (d.state_results){%>
+				<div class="col-md-3 col-sm-6 col-6">
+					<div class="related-img-container">
+                        <a href="<%print(d.link)%>" target="_blank"><img src="<%print(d.image)%>" class="img-fluid"></a>
+                    </div>
+					<p class="related-hed"><a href="<%print(d.link)%>" target="_blank"><%= gettext(d.headline)%></a></p>
+					<p class ="related-date"><%= gettext(d.pubdate)%></p>
+				</div>
+			<%}%>
+		<%})%>
+	</div>
+</div>

@@ -143,11 +143,15 @@ export default class makeTable {
                 let slug = slugify(candLast);
                 let pseudo = d3.select(document.createElement('div'));
 
-                pseudo.append("span")
-                    .attr("class", `img ${slug}`)
-                    .style("background-color", color)
-                    .append("img")
-                    .attr("src", `./images/bw/${slug}-bw.png?v=1`);
+                if (elexUtils.hasPhoto[candLast]) {
+                    pseudo.append("span")
+                        .attr("class", `img ${slug}`)
+                        .style("background-color", color)
+                        .append("img")
+                        .attr("src", `./images/bw/${slug}-bw.png?v=1`);
+                }
+
+
 
                 pseudo.append("span")
                     .html(candDisplay.trim())

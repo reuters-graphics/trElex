@@ -88,10 +88,12 @@ class setTooltip {
         candArr.forEach(c => {
 
             let lastName = this.candidates[c.candID][2];
-
-
             let finalStr = d3.format(",")(c["P2"]);
-            let sdeStr = d3.format(",")(c["P"]);
+
+            let sde = elexUtils.round((c["P"]/100), 2);
+            let sdeStr = sde.toFixed(2);
+            //let sdeStr = d3.format(",")(c["P"]);
+            
             let pctVal = c["P"] === 0 ? 0 : c["P"]/totalVotes;
             let pctStr = c["P"] === 0 ? "0.0%" : pctVal < .01 ? "<1%" : d3.format(".1%")(pctVal);
 

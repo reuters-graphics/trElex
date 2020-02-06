@@ -1,0 +1,666 @@
+$forest1: #C4D6C4 !default;
+$forest2: #A5C3A8 !default;
+$forest3: #73A97F !default;
+$forest4: #008C4E !default;
+$forest5: #007741 !default;
+$forest6: #005027 !default;
+$green1: #CBE1C8 !default;
+$green2: #AED3AB !default;
+$green3: #7DBE80 !default;
+$green4: #0AA74B !default;
+$green5: #008C3E !default;
+$green6: #005E25 !default;
+$olive1: #E0EDCB !default;
+$olive2: #D0E4AF !default;
+$olive3: #B4D682 !default;
+$olive4: #8FC641 !default;
+$olive5: #74A535 !default;
+$olive6: #476E1E !default;
+$lime1: #EFF4CC !default;
+$lime2: #E8EEAF !default;
+$lime3: #DBE580 !default;
+$lime4: #CADB2E !default;
+$lime5: #A6B626 !default;
+$lime6: #6A7812 !default;
+$yellow1: #FCF8CD !default;
+$yellow2: #FBF5B0 !default;
+$yellow3: #F9F17E !default;
+$yellow4: #F6EB0E !default;
+$yellow5: #CAC313 !default;
+$yellow6: #838103 !default;
+$tangerine1: #FFECC6 !default;
+$tangerine2: #FFE3A7 !default;
+$tangerine3: #FFD576 !default;
+$tangerine4: #FDC218 !default;
+$tangerine5: #D0A115 !default;
+$tangerine6: #886A00 !default;
+$orange1: #FDD5BB !default;
+$orange2: #FBBE99 !default;
+$orange3: #F79967 !default;
+$orange4: #F26725 !default;
+$orange5: #C8551D !default;
+$orange6: #843401 !default;
+$red1: #FBC9BA !default;
+$red2: #F8AB98 !default;
+$red3: #F37B68 !default;
+$red4: #EC2033 !default;
+$red5: #C31729 !default;
+$red6: #82000D !default;
+$rose1: #E9C3C8 !default;
+$rose2: #DFA4AE !default;
+$rose3: #D17589 !default;
+$rose4: #C02460 !default;
+$rose5: #A11950 !default;
+$rose6: #6B0031 !default;
+$violet1: #DABFD1 !default;
+$violet2: #C99FBB !default;
+$violet3: #B1709B !default;
+$violet4: #952978 !default;
+$violet5: #7E1E65 !default;
+$violet6: #530041 !default;
+$purple1: #CABDDC !default;
+$purple2: #B19CC9 !default;
+$purple3: #8D6EAE !default;
+$purple4: #653290 !default;
+$purple5: #552479 !default;
+$purple6: #360451 !default;
+$navy1: #BCC2E0 !default;
+$navy2: #9BA4CF !default;
+$navy3: #697CB8 !default;
+$navy4: #0F519F !default;
+$navy5: #0A4286 !default;
+$navy6: #002459 !default;
+$blue1: #C8DAF0 !default;
+$blue2: #ABC8E8 !default;
+$blue3: #7AADDC !default;
+$blue4: #1F8FCE !default;
+$blue5: #1B78AC !default;
+$blue6: #044F74 !default;
+$cyan1: #CFE8F9 !default;
+$cyan2: #B5DDF6 !default;
+$cyan3: #86CCF1 !default;
+$cyan4: #2AB8EB !default;
+$cyan5: #259AC5 !default;
+$cyan6: #0C6785 !default;
+$gray1: #DCDDDE !default;
+$gray2: #BCBEC0 !default;
+$gray3: #939598 !default;
+$gray4: #6D6E71 !default;
+$gray5: #4D4D4F !default;
+$gray6: #414042 !default;
+$magenta1: #F4CCDC !default;
+$magenta2: #E575A6 !default;
+$magenta3: #DF338A !default;
+$magenta4: #9C1B61 !default;
+$magenta5: #740245 !default;
+
+$lightest-gray: #E7E7E7 !default;
+$light-gray:#E6E7E8 !default;
+$basic-gray:#A7A9AC !default;
+$med-gray: #999 !default;
+$dark-gray:#76787A !default;
+$text-gray:#404041 !default;
+
+
+//depth of the chart
+.reuters-chart{
+    margin-top: .5rem;
+    margin-bottom: 15px;
+}
+.chart {
+	position:relative;
+    font-family:$font-family-sans-serif;
+	font-weight:400;
+}
+.nested-chart{
+	left:0;
+	top:0;
+	width:calc(100% - 80px);
+}
+.nested-legend{
+	position:absolute;
+	right:0;
+	top:0;
+	width:80px;
+}
+.no-legend{
+.nested-chart{
+	position: static;
+	width:100%;
+}
+.nested-legend{
+	display:none;
+}
+	
+}
+.navContainer.spacer{
+	min-height: 27px;
+}
+.page-legend{
+	width:100%;
+	height:30px;
+	.legendItems{
+		width:100px;
+		height:30px;
+		position:static;
+		display:inline-block;
+	}
+}
+.chart-holder{
+	position:relative;
+	&.smaller{
+		.chart-nav{
+			margin-bottom:10px;
+		}
+		.nested-chart{
+			width:100% !important;			
+		}
+		
+		.nested-legend{
+			width:100% !important;
+			position: static;
+			min-height: 35px;
+		}
+		.legend-items-holder{
+			display:flex;
+			flex-wrap: wrap-reverse;
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+		}
+		.legendItems{
+			position:static;
+			width:auto;
+			display:block;
+			vertical-align: top;
+			margin-bottom: 0px;
+			margin-right:10px;
+			
+		}
+		.legendInline{
+			width:auto !important;
+		}
+		.legendContainer{
+			.valueTip{
+				display:none;
+			}
+			.dateTip{
+				display:none;
+			}			
+		}
+		.legend-items-holder{
+			min-height:20px;
+		}
+		.reuters-tooltip{
+			display:block !important;
+		}
+		.legend-ital{
+			display:none !important;
+		}
+	}
+}
+
+hr{
+	margin-bottom:0px;
+	margin-top:5px;
+}
+.legendContainer{
+	position:relative;
+    font-size:$font-size-sm;
+
+	.legend-items-holder{
+		position:relative;
+	}
+	.dateTip{
+		font-weight: 400;
+		margin-bottom: 5px;
+		text-transform: uppercase;
+	}
+	.legend-ital{
+		font-style: italic;
+		margin-bottom: 8px;
+		line-height: 1;
+		display:none;		
+	}
+}
+.legendItems{
+	font-size: $font-size-sm;
+	margin-bottom:20px;
+	line-height: 1;
+	position:absolute;
+	cursor:pointer;	
+	transition:all 0.5s;
+
+	width:100%;
+	&.clicked{
+		opacity:0.4;
+	}
+
+	.nameTip{
+		display:inline-block;
+		vertical-align: top;
+		font-weight: 600;
+		margin:0;
+		margin-right:4px;
+		line-height: 1;
+		
+	}
+	.valueTip{
+		font-weight: 400;
+		line-height: 1;
+		margin:0;
+		
+	}
+	.legendInline{
+		display:inline-block;
+		vertical-align: top;
+		width:calc(100% - 15px);
+	}
+	.circleTip{
+		width:10px;
+		height:10px;
+		border-radius: 10px;
+		display:inline-block;
+		vertical-align: top;
+		margin-top: 2px;
+		margin-right:2px;
+		&.line{
+			border-radius: 3px;
+			margin-top: 6px;
+			height:3px;
+		}
+		&.bar{
+			border-radius:0px;
+		}
+	}
+
+	
+	
+}
+
+.layoutNavContainer{
+}
+.layoutNavButtons{
+	width:40px;
+	height:40px;
+	margin-left: 6px;
+	display:inline-block;
+	cursor:pointer;
+	vertical-align: top;
+	margin-bottom: 6px;
+	background-image: url(../images/chartlayouts.png);
+	background-size:200%;		
+	&:first-of-type{
+		margin-left:0px;
+	}
+	&.selected{
+		background-position-x:40px !important;				
+	}
+	&:hover{
+		background-position-x:40px !important;				
+	}
+	&.basicbar{
+		background-position-y:0px;
+	}
+	
+	&.stackTotalbar{
+		background-position-y:-40px;	
+	}
+	
+	&.stackPercentbar{
+		background-position-y:-80px;	
+	}
+	
+	&.sideBySidebar{
+		background-position-y:-120px;	
+	}
+	
+	&.tierbar{
+		background-position-y:-160px;	
+	}
+	
+	&.onTopOfbar{
+		background-position-y:-200px;
+	}
+	
+	&.basicline{
+		background-position-y:-240px;		
+	}
+	
+	&.stackTotalline{
+		background-position-y:-280px;		
+	}
+	
+	&.stackPercentline{
+		background-position-y:-320px;		
+	}
+	
+	&.fillLinesline{	
+		background-position-y:-360px;	
+	}	
+
+}	
+.legendContainer{
+	.valueTip{
+		margin-top:5px;
+	}
+}	
+
+.reuters-tooltip {
+	position: absolute;
+	text-align: left;
+	padding:8px;
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+	pointer-events: none; 
+	z-index: 5;
+	font-size: $font-size-xs;
+	max-width:200px;
+	font-family: $font-family-sans-serif;
+	hr{
+		width:100%;
+		margin:5px auto 5px auto;
+		border-top: 1px solid black;
+	}
+	.dateTip{
+		font-weight: 700;
+		margin-bottom: 6px;
+	}
+	.nameTip{
+		display:inline-block;
+		vertical-align: top;
+		font-weight: 600;
+		width:60px;
+		margin:0;
+		margin-right:4px;
+		line-height: 1;
+		
+	}
+	.valueTip{
+		display:inline-block;
+		vertical-align: top;
+		font-weight: 300;
+		max-width:150px;
+		line-height: 1;
+		margin:0;
+		
+	}
+
+	.circleTip{
+		width:10px;
+		height:10px;
+		border-radius: 10px;
+		display:inline-block;
+		vertical-align: top;
+		margin-top: 2px;
+		margin-right:2px;
+		&.line{
+			border-radius: 3px;
+			height:3px;
+		}
+		&.bar{
+			border-radius:0px;
+		}
+
+	}
+	.tipHolder{
+		width:100%;
+		margin-top: 2px;
+	}
+
+}
+
+
+
+.tipCircle{
+	&.highlight{
+		opacity:1 !important;
+	}
+	&.timeline{
+		opacity:1 !important;
+		fill:none !important;
+		stroke:black !important;
+		stroke-width:1.5px !important;
+		&.highlight{
+			fill:black !important;
+		}
+	}	
+}
+
+/*lines and area and plot space*/
+.line {
+  fill: none;
+  stroke: #231F20;
+  stroke-linejoin: round;
+  stroke-linecap:round;
+} 
+.lineChart {
+  .line{
+	  stroke-width:3px;
+	  transition:stroke-width 0.5s, opacity 0.5s;
+  }
+} 
+
+.lineChart:hover {
+	.line{
+		stroke-width:6px;		
+	}
+
+} 
+
+.lineChart.notSelected {
+  opacity:0.4;
+} 
+.lineChart.turnedOff{
+	opacity:0;
+}
+
+.zeroAxis{
+	stroke:black;
+	stroke-width:2px;
+}
+
+/*axis*/
+.axis line, .axiszero line  {
+	fill: none;
+	stroke: $gray-light;
+//	shape-rendering: crispEdges;
+	}
+.y.axis line{
+	stroke:$gray-light;
+}
+.axiszero line {  
+	stroke: $gray-dark;
+	stroke-width: 1.5px;
+	}
+.axis text {
+	font-weight: 400;
+	fill:black;
+	font-family: $font-family-sans-serif ;
+	font-size: $font-size-sm;
+	}
+
+
+.axiszero text, .axis path, .axiszero path {
+  display: none;
+}
+	
+.area, .area2 {
+	opacity:0.8;
+}
+.pollArea{
+	opacity:0.3;
+}	
+.plot{
+fill:white;
+//fill: #F0EEED;
+}
+.states {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linejoin: round;
+}
+.cursorline {
+  stroke: $gray ;
+  stroke-width: 1px;
+}
+.recessionBox {
+  fill: $gray-lighter ;
+}
+
+rect.bar.lighter{
+	opacity:0.6 !important;
+}
+
+.annotation-group{
+	opacity:0.001;
+	transition:opacity 1s;
+	transition-delay:1s;
+	&.active{
+		opacity:1;
+	}
+}
+.annotation-note-label{
+	font-size:$font-size-xs;
+}
+.annotation-note-title{
+	//font-size:$font-size-sm;
+}
+
+.circleTip.bar.outline{
+	background-color: white !important;
+	border: 1.5px solid black;
+}
+.bar.outline{
+	stroke:black;
+}
+.barLabel{
+	fill:white;
+	font-size:$font-size-xs;
+	text-anchor:middle;
+	font-weight: 700;
+}
+
+.reuters-tooltip {
+	.tipHolder.scatter{
+		margin-top:2px !important;
+	}
+	.colorTip{
+		font-weight: 300;
+		margin:0;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+}
+.scatter-dot{
+	mix-blend-mode:multiply;
+	&.lighter{
+		opacity:0.6;
+	}
+}
+.legendContainer.scatter{
+	margin-top:12px;
+}
+
+.connect-lines{
+	stroke:black;
+	stroke-width:2px;
+}
+
+
+.axislabel{
+	text-anchor:start !important;
+	font-size:0.75rem;
+	fill:$gray4;
+	text-transform: uppercase;
+}
+.scatter-arrow{
+	stroke:$gray4;
+}
+
+
+.geography{
+	stroke:white;
+	stroke-width:1px;
+	&:hover{
+		fill:#404041 !important;
+	}
+}		
+.geographyLabel{
+	pointer-events: none;
+	fill:black;
+	text-transform: uppercase;
+	font-size: $font-size-xs;
+	cursor:pointer;
+	text-anchor:middle;
+	&.left-align{
+		text-anchor:start;
+	}
+   @include media-breakpoint-down(xs){
+		display:none;
+	}
+}
+.legendBox{
+	height:12px;
+	width:12px;
+	display:inline-block;
+	&.hash{
+        background:repeating-linear-gradient(-45deg,$gray1,$gray1 1.5px,white 0,white 4px);
+	}
+}
+.legendBoxwide{
+	height:8px;
+	width:100%;	
+	&.hash{
+        background:repeating-linear-gradient(-45deg,$gray1,$gray1 1.5px,white 0,white 4px);
+	}
+}
+.map-legend-text{
+    font-size: $font-size-sm;
+}
+.map-legend-holder{
+	min-width:100px;
+	margin-right:2px;
+}
+.map-tip{
+	line-height: 1.2;
+	.dateTip{
+		font-weight: 700;
+	}
+	.tipHolder{
+		margin-top:5px;
+		width:100%;
+		display:flex;
+		.nameTip{
+			width:50%;
+		}
+		.valueTip{
+			width:50%;
+			text-align: right;
+			
+		}
+	}
+	
+}
+
+.related_content{
+	padding-left:15px;
+	padding-right:15px;
+	a{
+		color:#333333;
+		line-height: 1.3;
+		font-weight: 400;
+	}
+		
+
+	.related_content_image{
+		width:100%;
+		padding-bottom:50%;
+		background-size: cover;
+		background-position: center center;
+	}
+	.graphic-related{
+		font-weight:600;
+		text-transform: uppercase;
+	}	
+}

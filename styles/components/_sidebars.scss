@@ -1,0 +1,110 @@
+.sidebar{
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;
+    .sidebar-title{
+        font-size: $font-size-2xl;
+        border-top: 1px solid $gray-lighter;
+        padding-top: $spacer * 2;
+        margin-top: 0;
+        margin-bottom: $spacer * 2;
+        letter-spacing: -.5px;
+        /*&::before{
+            content: "";
+            margin-top: $spacer * 2;
+            padding-top: $spacer * 2;
+            border-top: 1px solid $gray-lighter;
+            display: block;
+        }*/
+    }
+    .byline{
+        font-family: $font-family-sans-serif;
+        margin-bottom: ($spacer * 2);
+        font-size: $font-size-xs;
+        font-style: normal;
+    }
+    &.small{
+        font-size: 100% !important;
+        .sidebar-title{
+            font-size: $font-size-h3;
+            margin-left: 0 !important;
+            width: 100%;
+        }
+        p{
+            font-family: $font-family-sans-serif;
+            font-size: $font-size-xs;
+            margin-left: 0 !important;
+        }
+        .byline{
+            display: none;
+        }
+
+        @include media-breakpoint-down(sm){
+            margin-top: $spacer-y * 3;
+            margin-bottom: $spacer-y * 3;
+        }
+    
+        @include media-breakpoint-up(md){
+            @include make-col-ready();
+            @include make-col(6);
+            float: right;
+            p, .byline{
+                @include make-col(12);
+            }
+            .sidebar-title{
+                border-top: 0;
+                @include make-col(12);
+                &::before{
+                    display: none;
+                }
+            }
+        }
+        @include media-breakpoint-up(lg){
+            @include make-col(4);
+        }
+        &.number{
+            .sidebar-title{
+                font-size: 10rem;
+                letter-spacing: -6px;
+                margin-bottom: 0;
+                border-top: 0 !important;
+            }
+            p{
+                font-size: 1rem;
+            }
+        }
+    }
+
+
+
+    &.video-container{
+        .sidebar-title{
+            border-top: 0;
+            padding-top: 0;
+            font-size: $font-size-h3;
+            margin-bottom: $spacer;
+        }
+    }
+
+
+}
+
+.signoff{
+    
+    .article-row{
+        &::before{
+            content: "";
+            margin-top: $spacer * 2;
+            padding-top: $spacer;
+            border-top: 1px solid $gray-lighter;
+            display: block;
+            position:absolute;
+            left: 15px;
+            width: 10% !important;
+        }
+    }
+    p{
+        font-family: $font-family-sans-serif;
+        font-size: $font-size-xs;
+        margin-bottom: 0;
+    }
+}

@@ -29,6 +29,28 @@ export const candColors = {
     "Walsh": "elex-gray"
 }
 
+export const hasPhoto = {
+    "Biden": true,
+    "Sanders": true,
+    "Buttigieg": true,
+    "Warren": true,
+    "Klobuchar": true,
+    "Yang": true,
+    "Patrick": true,
+    "Bennet": true,
+    "Delaney": true,
+    "Gabbard": true,
+    "Booker": true,
+    "Harris": true,
+    "Castro": true,
+    "Williamson": true,
+    "Steyer": true,
+    "Bloomberg": true,
+    "Trump": true,
+    "Weld": true,
+    "Walsh": true,
+}
+
 export const colors = {
     "elex-purple": "rgb(127, 97, 201)",
     "elex-yellow": "rgb(255, 210, 3)",

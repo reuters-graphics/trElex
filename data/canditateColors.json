@@ -1,0 +1,22 @@
+{
+  "Biden": { "color":"blue", "val":400},
+  "Yang": { "color":"brown", "val":300},
+  "Patrick": { "color":"blue", "val":100},
+  "Klobuchar": { "color":"blue", "val":100},
+  "Bennet": { "color":"blue", "val":100},
+  "Delaney": { "color":"blue", "val":100},
+  "Gabbard": { "color":"blue", "val":100},
+  "Booker": { "color":"blue", "val":100},
+  "Harris": { "color":"blue", "val":100},
+  "Castro": { "color":"blue", "val":100},
+  "Williamson": { "color":"blue", "val":100},
+  "Steyer": { "color":"blue", "val":100},
+  "Warren": { "color":"green", "val":400},
+  "Sanders": { "color":"navy", "val":400},
+  "Buttigieg": { "color":"purple", "val":400},
+  "Uncommitted": { "color":"gray", "val":100},
+  "Other": { "color":"gray", "val":100},
+  "Trump": { "color":"orange", "val":400},
+  "Weld": { "color":"red", "val":400},
+  "Walsh": { "color":"yellow", "val":400}
+}

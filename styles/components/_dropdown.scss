@@ -1,0 +1,67 @@
+.special-reports-dropdown-container{
+    margin-left: $spacer;
+    &.show{
+        .special-reports-dropdown{
+            display: block;
+        }
+    }    
+    .special-reports-dropdown-buttons{
+        .nav-item{
+            display: inline;
+            margin: 0; padding: 0;
+            .nav-link{
+                color: $sr-dropdown-link-color;
+                font-family: $font-family-sans-serif;
+                display: none;
+                padding: 0;
+                
+                &.active{
+                    @include media-breakpoint-up(md){
+                        display: block;
+                    }
+                    &::after{
+                        content: $fa-var-angle-down;
+                        font-family: $font-family-font-awesome;
+                        padding-left: $spacer / 2;
+                    }
+                }
+            }
+        }
+    }
+    .special-reports-dropdown{
+        background-color: $gray-dark;
+        top: -15px; //magic numbers. I hope they work at all sizes.
+        left: -25px;
+        padding-bottom: $spacer;
+        @include media-breakpoint-down(sm){
+            display: block !important;
+            position: inherit !important;
+            background: none !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: none !important;
+            border-radius: 0 !important;
+            float: none !important;
+        }
+        .dropdown-divider {
+            background-color: $gray;
+        }
+        .dropdown-header{
+            text-transform: uppercase;
+            font-size: $font-size-xs;
+        }
+        .dropdown-item{
+            color: $sr-dropdown-link-color;
+            font-family: $font-family-sans-serif;
+            @include hover-focus {
+                color: $sr-dropdown-link-hover-color;
+                text-decoration: none;
+                background-color: $sr-dropdown-link-hover-bg;
+            }
+            &.active, &:active{
+                background-color: $sr-dropdown-link-hover-bg;
+            }
+        }
+    }
+}

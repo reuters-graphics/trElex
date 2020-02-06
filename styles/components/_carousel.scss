@@ -1,0 +1,225 @@
+.carousel {
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 2;
+    //flexbox breaks a bunch of this stuff.
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev{
+        display:block;
+    }
+    
+    
+    //the images themselves.
+    .carousel-inner {
+
+        > .carousel-item {
+            &.popup-gallery-item{
+                cursor: default;
+                .d-block{
+                    &::before, &::after{
+                        display: none !important;
+                    }
+                }
+            }
+            .media-container, .d-block, img, a img {
+                width: 100%;
+            }
+        
+        }
+    }
+
+
+    //the pips below the images. The elements themselves actually have to be ABOVE the container 
+    //in the HTML for it to work properly, which is... odd.
+    .carousel-indicators {
+        bottom: 0px;
+        li{
+            background-color: $gray-light;
+            &.active{
+                background-color: $carousel-indicator-active-bg;
+            }
+        }
+    }
+    .carousel-caption {
+        position: inherit;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        top: auto;
+        width: 100%;
+        padding-top: $caption-padding-top;
+        text-align: left;
+        text-shadow: none;
+        z-index: 10;
+        .caption{
+            &::before{
+                content: $fa-var-camera;
+                display: inline;
+                margin-right: $spacer * .25;
+                font-family: $font-family-font-awesome;
+                color: $gray-lighter;
+            }
+            @include media-breakpoint-up(sm){
+                min-height: 100px;
+            }
+            @include media-breakpoint-up(md){
+                min-height: 80px;
+            }
+            @include media-breakpoint-up(lg){
+                min-height: 50px;
+            }
+        }
+    }
+}
+
+
+
+
+
+//
+// Left/right controls for nav
+//
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 0;
+
+    @include media-breakpoint-up(sm){
+        bottom: 140px;
+    }
+    @include media-breakpoint-up(md){
+        bottom: 120px;
+    }
+    @include media-breakpoint-up(lg){
+        bottom: 90px;
+    }
+    // Use flex for alignment (1-3)
+    display: flex; // 1. allow flex styles
+    align-items: center; // 2. vertically center contents
+    width: 30%;  //$carousel-control-width;
+    color: $carousel-control-color;
+    text-align: center;
+    opacity:  .6; //$carousel-control-opacity;
+    // We can't have a transition here because WebKit cancels the carousel
+    // animation if you trip this while in the middle of another animation.
+
+    // Hover/focus state
+    @include hover-focus {
+        color: $carousel-control-color;
+        text-decoration: none;
+        outline: 0;
+        opacity: 1;
+    }
+}
+.carousel-control-prev {
+    left: 0;
+    padding-left: $spacer / 2;
+    justify-content: flex-start !important;
+}
+.carousel-control-next {
+    right: 0;
+    justify-content: flex-end !important;
+}
+
+// Icons for within
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: inline-block;
+    width: $carousel-control-icon-width;
+    height: $carousel-control-icon-width;
+    background: transparent no-repeat center center;
+    background-size: 100% 100%;
+    width: 30px;
+    height: 30px;
+}
+.carousel-control-prev-icon {
+    background-image: $carousel-control-prev-icon-bg;
+}
+.carousel-control-next-icon {
+    background-image: $carousel-control-next-icon-bg;
+}
+
+.carousel.inverted{
+
+    .carousel-control-prev-icon {
+        background-image: $carousel-control-prev-inverted-icon-bg;
+    }
+    .carousel-control-next-icon {
+        background-image: $carousel-control-next-inverted-icon-bg;
+    }
+    
+}
+
+
+//animation
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+    transition:transform .6s ease-in-out;
+    transform: translate(0, 0) !important;
+}
+
+.carousel-item-next,
+.active.carousel-item-right {
+    transition:transform .6s ease-in-out;
+    transform: translate(100%, 0) !important;
+}
+
+.carousel-item-prev,
+.active.carousel-item-left {
+    transition:transform .6s ease-in-out;
+    transform: translate(-100%, 0) !important;
+} 
+
+
+
+.special-report{
+    .carousel-indicators{
+        li{
+            &.active{
+                background-color: #000;
+            }
+        }
+    }
+}
+
+
+
+/*
+
+.carousel-indicators {
+position: absolute;
+bottom: 10px;
+left: 50%;
+z-index: 15;
+width: $carousel-indicators-width;
+padding-left: 0;
+margin-left: -($carousel-indicators-width / 2);
+text-align: center;
+list-style: none;
+
+li {
+    display: inline-block;
+    width: $carousel-indicator-size;
+    height: $carousel-indicator-size;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    // IE9 hack for event handling
+    //
+    // Internet Explorer 9 does not properly handle clicks on elements with a `background-color` of `transparent`,
+    // so we use `rgba(0,0,0,0)` instead since it's a non-buggy equivalent.
+    // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Internet_Explorer
+    background-color: rgba(0,0,0,0); // IE9
+    border: 1px solid $carousel-indicator-border-color;
+    border-radius: $carousel-indicator-size;
+}
+
+.active {
+    width: $carousel-indicator-active-size;
+    height: $carousel-indicator-active-size;
+    margin: 0;
+    background-color: $carousel-indicator-active-bg;
+}
+}
+*/

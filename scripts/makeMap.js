@@ -9,12 +9,10 @@ const d3 = Object.assign({},
 
 let topojson = require("topojson-client");
 
-import theCities from "../geo-data/cities.json";
-import statePlanes from "../geo-data/statePlanes_fips.json";
+import theCities from "../data/cities.json";
+import statePlanes from "../data/statePlanes_fips.json";
 import setTooltip from "./tooltip.js";
-
-import theCounties from "../geo-data/states/counties-19.topo.json";
-
+import theCounties from "../data/states/counties-19.topo.json";
 import * as elexUtils from "./elexUtils.js";
 
 export default class makeMap {
@@ -24,22 +22,9 @@ export default class makeMap {
 
         this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : 0.68;
 
-        // Promise.all([
-        //         d3.json(`../data/states/counties-${this.stateFips}.topo.json`)
-        //     ])
-        //     .then(([data]) => {
-        //         theCounties = data;
-
-        //         this._setData();
-        //         this.appendElements();
-        //         this.update();
-
-        //     });
-
         this._setData();
         this.appendElements();
         this.update();
-
     }
 
     update() {
@@ -95,7 +80,7 @@ export default class makeMap {
             element: this.element,
             elexUtils: elexUtils,
             candidates: this.candLookup,
-            raceName : this.raceName
+            raceName: this.raceName
         });
 
         this.svg = d3.select(this.element).append("svg");
@@ -313,7 +298,7 @@ export default class makeMap {
             .style("background", key => elexUtils.getCandidateColor(key));
 
         keyItem.selectAll(".swatch")
-            .filter(key=> {
+            .filter(key => {
                 return key === "Tie";
             })
             .style("background-image", `url("images/tie-hash.png")`)

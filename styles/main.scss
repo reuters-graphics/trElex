@@ -1,0 +1,281 @@
+@import "variables";
+@import "fonts";
+
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "node_modules/ReutersCharter/sass/chartstyles.scss";
+@import "node_modules/components-font-awesome/scss/fontawesome.scss";
+@import "node_modules/components-font-awesome/scss/brands.scss";
+@import "node_modules/components-font-awesome/scss/regular.scss";
+@import "node_modules/components-font-awesome/scss/solid.scss";
+@import "node_modules/sass-material-colors/sass/_sass-material-colors.scss";
+
+//utilities
+@import "utilities/visibility";
+@import "utilities/containers";
+
+//components
+@import "components/querry-strings";
+@import "components/utilities";
+@import "components/header";
+@import "components/footer";
+@import "components/special-report";
+@import "components/special-report-section";
+@import "components/type";
+@import "components/mastheads";
+@import "components/buttons";
+@import "components/images";
+@import "components/videos";
+@import "components/sidebars";
+@import "components/related";
+@import "components/ad";
+@import "components/share";
+@import "components/forms";
+@import "components/custom-forms";
+@import "components/navs";
+@import "components/dropdown";
+@import "components/no-ui-slider";
+// @import "components/tooltip";
+@import "components/feature-page";
+@import "components/carousel";
+@import "components/popup-gallery";
+@import "components/other-stories";
+
+@import "_reutersColors";
+// @import "_resultsMap";
+// @import "_resultsTable";
+// @import "_tooltip_base";
+// @import "_tooltip_custom";
+// @import "_taskbar";
+@import "_related";
+
+
+// @import "node_modules/trElex/sass/_reutersColors.scss";
+@import "_resultsMap";
+@import "_resultsTable";
+@import "_tooltip_base";
+@import "_tooltip_custom";
+@import "_taskbar";
+
+body{
+    background: $body-background-color;
+}
+
+$source: 'Source Sans Pro';
+$knowledge: 'Knowledge';
+
+//define pulse animation
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  // 25% {
+  //   transform: scale(1);
+  // }
+  50% {
+    transform: scale(0.5);
+  }
+  // 75% {
+  //   transform: scale(0.5);
+  // }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.container {
+    &.dem {
+        .row.rep-row {
+            display: none;
+        }
+    }
+
+    &.rep {
+        .row.dem-row {
+            display: none;
+        }
+    }
+
+}
+
+
+
+.header {
+    text-align: center;
+
+    .graphic-title {
+        font-size: 5rem;
+        font-family: $knowledge;
+        font-weight: 500;
+        line-height: 1;
+        margin-top:62px;
+        letter-spacing:0;
+        @include media-breakpoint-down(sm) {
+            margin-top:13px;
+            font-size:2.93rem;
+        }
+    }
+
+    .graphic-subhead {
+        font-size: 1rem;
+        font-weight: 100;
+        font-family: Source Sans Pro;
+        margin-top: 15px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1.38px;
+        text-align: center;
+        @include media-breakpoint-down(sm){
+            margin-bottom:5px;
+        }
+    }
+
+    .timestamp {
+        font-weight: 100;
+        font-family: Source Sans Pro;
+        letter-spacing: 1px !important;
+        text-transform: uppercase;
+        font-size: .85rem !important;
+
+        span.updated {
+            color: #BF1818;
+        }
+    }
+
+}
+
+.timestamp {
+       padding-bottom:2px;
+}
+
+.main{
+    overflow-x: hidden;
+    margin-top: 52px;
+
+    
+    .party {
+            // font: Medium 16px/18px Knowledge2017;
+            font-family:'Knowledge';
+            font-weight:500;
+            font-size:1.125rem;
+            letter-spacing: 1.38px;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom:0;
+            line-height: 1.1;
+        }
+
+    //TIMESTAMP AND COUNTER STYLES FOR ALL SIZES
+    //T & C IN HEADER DIV ON MOBILE, IN DEM HEADER DIV ON DESKTOP
+    .pulse {
+            font-size:8px;
+            color:#BF1818;
+            height:19px;
+            width:15px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding-bottom:2px;
+            i {
+                animation:pulse 3s infinite;
+            }   
+    }
+    .timestamp, .pulse {
+        margin-bottom:0;
+    }
+    .pulse-container {
+        display:flex;
+        align-items:center;
+        
+    }
+    .timestamp, .counter {
+        font-size:0.8rem;
+        text-align:right;
+        letter-spacing: 0;
+        margin:0;
+        font-family:$source;
+        .updated {
+                // color: #B90000;
+        }
+    }
+
+    //TIMESTAMP AND COUNTER STYLES FOR DESKTOP
+    .dem-head {
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-end;
+        .pulse-container {
+            justify-content:flex-end;
+        }
+        .timestamp, .counter {
+            text-align:right;
+        }
+    }
+
+    //TIMESTAMP AND COUNTER STYLES FOR MOBILE
+    .header {
+        .pulse-container {
+            justify-content:center;
+        }
+        .timestamp, .counter{
+            text-align:center;
+            font-weight:300;
+        }
+    }
+
+    .vertical-separator {
+        width:100%;
+        height:0px;
+        border-bottom:1px solid #333333;
+        margin-bottom:22px;
+    }
+
+    .graphic-chart-label {
+        margin: 4rem auto 1rem auto;
+        font-weight: 400;
+        text-align: left;
+        border-bottom: 1px solid $gray-600;
+        width: 100%;
+    }
+
+    .dem-row, .rep-row {
+        margin-top:20px;
+    }
+
+    .dem-row {
+        @include media-breakpoint-down(sm){
+            margin-top:20px;
+        }
+    }
+
+    @include media-breakpoint-up(sm){
+        margin-top: 68px;
+    }
+
+
+
+    .note-block {
+        margin: 10px auto;
+    }
+
+}
+
+body.graphics .main{
+    margin-top: 60px;
+    @include media-breakpoint-up(sm){
+        margin-top: 60px;
+    }
+}
+.tooltip{
+    pointer-events: none !important;
+}
+.seo-headline{
+    position:absolute;
+    top:-4000px;
+    opacity:0.00001;
+    font-size:10px !important;
+    max-height: 0px;
+    overflow: hidden;
+        
+}
+
+

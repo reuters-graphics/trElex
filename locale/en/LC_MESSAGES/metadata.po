@@ -1,0 +1,32 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=iso-8859-1\n"
+
+msgid "language_id"
+msgstr "en"
+
+msgid "en"
+msgstr "en"
+
+msgid "share-image"
+msgstr "share-card.png"
+
+msgid "seoHeadline"
+msgstr "Live results from the Iowa caucuses"
+
+msgid "page_byline"
+msgstr "Chris Canipe"
+
+msgid "page_created"
+msgstr "2020-02-04T22:44:43.000+00:00"
+
+msgid "page_modified"
+msgstr "2020-02-06T15:07:55.328Z"
+
+msgid "headline"
+msgstr "Iowa caucuses results"
+
+msgid "description"
+msgstr "Live results from the Iowa caucuses"
+
+msgid "page_url"
+msgstr "https://graphics.reuters.com/USA-ELECTION-IA-CAUCUS-LIVE/0100B5CE3DR/"

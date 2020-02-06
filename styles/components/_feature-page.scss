@@ -1,0 +1,61 @@
+section.graphic-section{
+	max-height: 0px;
+	transition:opacity 0.5s;  
+	opacity:.00001;
+	overflow: hidden;  
+    &.selected{
+		opacity:1;
+		max-height: 100000px;
+    }
+    @include media-breakpoint-down(xs){
+        max-height:none;
+        opacity: 1;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+    }	
+}
+#package-container{
+    @include media-breakpoint-down(xs){
+        border-bottom: 1px solid black;
+        h1{
+            font-size:$display4-size;
+        }
+    }	
+}
+
+.feature-header{
+    position:relative;
+    margin-top:-30px;
+    padding-left:0px;
+    padding-right:0px;
+    @include media-breakpoint-up(xl){
+        @include make-container()
+        @include make-container-max-widths();
+        margin-top:20px;
+	    padding-left:15px;
+	    padding-right:15px;
+
+    }
+    .feature-header-title-container{        
+        .display-1, .display-2,.display-3,.display-4{
+            line-height: 1;
+        } 
+        .display-3{
+            font-size:$display4-size;
+        }           
+    }    
+    @include media-breakpoint-up(md){
+        .feature-header-title-container{
+		    position:absolute;
+		    bottom:10px;
+		    left:30px;
+		    color:white;
+		    .display-1, .display-2,.display-3,.display-4,.display-5,.display-6{
+		        color:white;
+		    }
+		    .display-3{
+				font-size:$display3-size;
+        	} 
+		}
+    }           
+}

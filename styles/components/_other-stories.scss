@@ -1,0 +1,40 @@
+.other-stories-container{
+    margin-top: 0; //-$spacer;
+    margin-bottom: -$spacer;
+    padding-top: $spacer * 2;
+    border-top: 1px solid $gray-special-reports;
+
+    .other-stories-header{
+        color: $gray;
+        text-transform: uppercase;
+        a{
+            color: $gray;
+            text-decoration: none !important;
+        }
+    }
+
+    .other-stories{
+        padding-top: $spacer * 2;
+        padding-bottom: $spacer * 2;
+        article{
+            margin-bottom: $spacer * 2;
+            a{
+                text-decoration: none !important;
+                img{
+                    width: 100%;
+                }
+                .other-series-detail{
+                    margin-top: $spacer / 2;
+                    .other-story-title{
+                        font-size: $font-size-lg;
+                    }
+                    p{
+                        color: $gray-dark;
+                        font-family: $font-family-sans-serif;
+                        font-size: $font-size-sm;
+                    }
+                }
+            }
+        }
+    }
+}

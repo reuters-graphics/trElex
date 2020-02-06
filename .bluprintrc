@@ -2,5 +2,10 @@
   "bluprint": "^0.2.0",
   "name": "trElex",
   "category": "Primary Elections",
-  "actions": []
+  "actions": [{
+  "action": "move",
+  "paths": [
+	    ["./scripts/elexUtils.js", "../scripts/elexUtils.js"]
+	  ],
+	}]
 }
