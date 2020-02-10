@@ -1,10 +1,34 @@
+/* ================================== */
+/* CUSTOMIZE PROJECT HERE */
+/* ================================== */
+
+import geoData from "../data/states/subs-33.topo.json";
+
+let config = {
+    stateName: "New Hampshire",
+    stateFips: "33",
+    subhead: "Live Primary Results | Feb. 11, 2020",
+    demRaceName: "D",
+    repRaceName: "R",
+    demDisplay: "Democratic Primary",
+    repDisplay: "Republican Primary",
+    delColumn: true,
+    dataUrl: "//graphics.thomsonreuters.com/2020-US-elex/20200211EndOfNight/output_20200211EndOfNight.json",
+    aspectHeight: .9,
+    smAspectHeight: 1.1,
+    pollsClose: "Polls close at 7:00 PM ET"
+}
+
+/* ================================== */
+
 import {
     GraphicUtils
 } from './GraphicUtils.js' //always import
-import 'bootstrap'; //always import, removing will mess up navigation in the header bar.
+
 import {
     ReutersPym
 } from './ReutersPym.js' //always import, unless DEFNITELY NOT embedable. test if pym active with pymObject.hasPym
+
 let pymObject = new ReutersPym();
 
 const d3 = Object.assign({},
@@ -20,7 +44,8 @@ import related from '../templates/related.html'
 import trElex from "./trElex.js";
 
 $(".main").html(stateRace({
-    relativeDate: GraphicUtils.relativeDate
+    relativeDate: GraphicUtils.relativeDate,
+    config: config
 }))
 
 // add elections-specific taskbar
@@ -34,22 +59,37 @@ d3.json("//d3sl9l9bcxfb5q.cloudfront.net/json/al-2020-related").then((data) => {
     }))
 });
 
+
 let theCharts = [];
 
 /* ==================== */
 /* QUERY STRING LOGIC */
 /* ==================== */
 
-let qView = null;
-function init() {
-    qView = trElex.elexUtils.checkParam("party") ? trElex.elexUtils.checkParam("party") : null;
+let partyView = null;
+let tableOnly = null;
+let tableExpand = true;
 
-    if (qView === "both") {
+function init() {
+    partyView = trElex.elexUtils.checkParam("party") ? trElex.elexUtils.checkParam("party") : null;
+    tableOnly = trElex.elexUtils.checkParam("tableOnly") ? trElex.elexUtils.checkParam("tableOnly") : null;
+    tableExpand = trElex.elexUtils.checkParam("tableExpand") ? trElex.elexUtils.checkParam("tableExpand") : true;
+
+    if (partyView === "both") {
         d3.select(".container").classed("both", true);
-    } else if (qView === "rep") {
-        d3.select(".container").classed("rep", true);
+    } else if (partyView === "rep") {
+        d3.selectAll(".container").classed("rep", true);
     } else {
-        d3.select(".container").classed("dem", true);
+        d3.selectAll(".container").classed("dem", true);
+    }
+
+    if (tableOnly && tableOnly === "true") {
+        d3.selectAll(".container").classed("table-only", true);
+    }
+
+    if (tableExpand === "false") {
+        tableExpand = false;
+        d3.selectAll(".table-col").classed("no-expand", true);
     }
 
     getNewData();
@@ -96,14 +136,11 @@ function getNewData() {
     let cache = new Date().getTime();
 
     Promise.all([
-            d3.json(`//graphics.thomsonreuters.com/2020-US-elex/20200203/output_20200203.json?cache=${cache}`)
+            d3.json(`${config.dataUrl}?cache=${cache}`)
         ])
         .then(([resultsData]) => {
 
             if (theCharts.length === 0) {
-                //INITIALIZE "UPDATED" TIME STAMP HERE, PER DESIGN MODS -- SH
-                let time = trElex.elexUtils.formatTimeStamp(resultsData);
-                d3.selectAll(".timestamp").html(time);
                 main(resultsData);
             } else {
                 updateCharts(resultsData);
@@ -115,63 +152,54 @@ function getNewData() {
 
 function main(resultsData) {
 
-    if (!qView || qView === "dem" || qView === "both") {
+    if (!partyView || partyView === "dem" || partyView === "both") {
 
         const demMap = new trElex.makeMap({
             element: document.querySelector(".dem-row .chart"),
             data: resultsData,
-            raceName: "Democratic Caucus",
-            stateFips: "19", //Iowa
-            aspectHeight: .68
+            raceName: config.demRaceName,
+            stateFips: config.stateFips,
+            aspectHeight: config.aspectHeight,
+            smAspectHeight: config.smAspectHeight,
+            geoData: geoData
         });
 
         const demTable = new trElex.makeTable({
             element: document.querySelector(".dem-row .table-div"),
             data: resultsData,
-            raceName: "Democratic Caucus",
-            stateFips: "19", //Iowa
+            raceName: config.demRaceName,
+            stateFips: config.stateFips,
             limit: 8,
             delColumn: true,
-            voteColumns: ["P2", "P"],
-            colKeys: {
-                "P": "SDE",
-                "P2": "Final align."
-            },
-            formatVote: (val, colKey) => {
-
-                if (isNaN(val)) {
-                    return "--";
-                } else if (val == 0) {
-                    return 0;
-                } else {
-                    val = colKey === "P" ? trElex.elexUtils.round(val / 100, 0) : val;
-                    return d3.format(",")(val);
-                }
-
-            }
+            voteColumns: ["P"],
+            tableExpand: tableExpand
         });
 
         theCharts.push(demMap, demTable);
 
     }
 
-    if (qView === "both" || qView === "rep") {
+    if (partyView === "both" || partyView === "rep") {
 
-        const repMap = new makeMap({
+        const repMap = new trElex.makeMap({
             element: document.querySelector(".rep-row .chart"),
             data: resultsData,
-            raceName: "Republican Caucus",
-            stateFips: "19", //Iowa
-            aspectHeight: .68
+            raceName: config.repRaceName,
+            stateFips: config.stateFips,
+            aspectHeight: config.aspectHeight,
+            smAspectHeight: config.smAspectHeight,
+            geoData: geoData
         });
 
-        const repTable = new makeTable({
+        const repTable = new trElex.makeTable({
             element: document.querySelector(".rep-row .table-div"),
             data: resultsData,
-            raceName: "Republican Caucus",
-            stateFips: "19", //Iowa
-            delColumn: false,
-            voteColumns: ["P"]
+            raceName: config.repRaceName,
+            stateFips: config.stateFips,
+            delColumn: true,
+            limit: 3,
+            voteColumns: ["P"],
+            tableExpand: tableExpand
         });
 
         theCharts.push(repMap, repTable);
@@ -193,15 +221,15 @@ function updateCharts(resultsData) {
     theCharts.forEach(chart => {
         if (resultsData) {
             chart.data = resultsData;
-
-            updateTimeStamp(resultsData.ts);
-            runTimer();
         }
-
         chart.update();
     })
 
-    runTimer();
+    if (resultsData) {
+        updateTimeStamp(resultsData.ts);
+        runTimer();
+    }
+
 }
 
 function updateTimeStamp(ts) {
@@ -223,7 +251,7 @@ window.addEventListener("resize", () => {
     if (windowWidth !== window.innerWidth) {
         windowWidth = window.innerWidth
         updateCharts(null);
-    } 
+    }
 });
 
 

@@ -55,6 +55,7 @@
 @import "_tooltip_base";
 @import "_tooltip_custom";
 @import "_taskbar";
+@import "_embed";
 
 body{
     background: $body-background-color;
@@ -109,6 +110,12 @@ $knowledge: 'Knowledge';
         line-height: 1;
         margin-top:62px;
         letter-spacing:0;
+
+        @include media-breakpoint-down(md) {
+            margin-top: 30px;
+            font-size: 3.5rem;
+        }
+
         @include media-breakpoint-down(sm) {
             margin-top:13px;
             font-size:2.93rem;
@@ -251,10 +258,8 @@ $knowledge: 'Knowledge';
         margin-top: 68px;
     }
 
-
-
     .note-block {
-        margin: 10px auto;
+        margin: 10px auto 0 auto;
     }
 
 }

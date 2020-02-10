@@ -58,7 +58,20 @@ class setTooltip {
 
     updateFields(d) {
 
-        let countyName = `${d.properties["NAME"]} County`;
+        let countyName = `${d.properties["NAME"]}`;
+
+        if (!d.data) {
+            this.tt.html(() => {
+
+                return `<div class="tooltip-inner">
+                      <span class='county'>${countyName}</span>
+                      <span class='reporting'>No polling places</span>
+                    </div>`;
+            });
+        
+            return false;
+        }
+
         let candArr = d.data.candidates;
         let totalVotes = d.data.totals["P"];
         let trows = '';
@@ -70,8 +83,8 @@ class setTooltip {
         if (candArr[0]["P"] == 0) {
             candArr = candArr.sort((a, b) => {
 
-                let aLast = this.candidates[a.candID][2];
-                let bLast = this.candidates[b.candID][2];
+                let aLast = this.candidates[a.cId][2];
+                let bLast = this.candidates[b.cId][2];
 
                 let aPos = elexUtils.defaultOrder.indexOf(aLast) >= 0 ? elexUtils.defaultOrder.indexOf(aLast) : 999;
                 let bPos = elexUtils.defaultOrder.indexOf(bLast) >= 0 ? elexUtils.defaultOrder.indexOf(bLast) : 999;
@@ -87,30 +100,29 @@ class setTooltip {
 
         candArr.forEach(c => {
 
-            let lastName = this.candidates[c.candID][2];
-            let finalStr = d3.format(",")(c["P2"]);
+            let lastName = this.candidates[c.cId][2];
+            let votes = d3.format(",")(c["P"]);
 
-            let sde = elexUtils.round((c["P"]/100), 2);
-            let sdeStr = sde.toFixed(2);
-            //let sdeStr = d3.format(",")(c["P"]);
-            
-            let pctVal = c["P"] === 0 ? 0 : c["P"]/totalVotes;
+            let pctVal = c["P"] === 0 ? 0 : c["P"] / totalVotes;
             let pctStr = c["P"] === 0 ? "0.0%" : pctVal < .01 ? "<1%" : d3.format(".1%")(pctVal);
 
             let color = this.elexUtils.getCandidateColor(lastName);
             let finalTD = this.raceName === "Democratic Caucus" ? `<td class='votes'>${finalStr}</td>` : ``;
+
+            if (!color) {
+                color = this.elexUtils.getCandidateColor("Other");
+            }
 
             trows += `<tr>
                         <td class='name'>
                             <span class='swatch' style='background-color: ${color}'></span>
                             <span class='name'>${lastName}</span>
                         </td>
-                        ${finalTD} 
-                        <td class='votes'>${sdeStr}</td>
+                        <td class='votes'>${votes}</td>
                         <td class='pct'>${pctStr}</td>
                     </tr>`
 
-        })
+        });
 
         let totPrecincts = d3.format(",")(d.data.precincts.pTot);
         let totReporting = d3.format(",")(d.data.precincts.pRep);
@@ -124,17 +136,13 @@ class setTooltip {
 
         this.tt.html(() => {
 
-            let finalTH = this.raceName === "Democratic Caucus" ? `<th class='votes'>Final align.</th>` : ``;
-            let votesTH = this.raceName === "Democratic Caucus" ? `<th class='votes'>SDE*</th>` : `<th class='votes'>Votes</th>` ;
-
             return `<div class="tooltip-inner">
                       <span class='county'>${countyName}</span>
                       <table class='table'>
                         <thead>
                             <tr>
                                 <th></th>
-                                ${finalTH}
-                                ${votesTH}
+                                <th class='votes'>Votes</th>
                                 <th class='pct'>Pct.</th>
                             </tr>
                         </thead>

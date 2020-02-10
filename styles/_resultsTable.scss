@@ -51,19 +51,27 @@
 
 	&.sm {
 
+		td {
+			height: 30px;
+		}
+
 		td.pct, td.votes, td.del {
 			font-size:0.75rem;
 		}
 
 		td.cand {
 			font-size:0.875rem;
-			height: 36px;
-
+		
 			span.img {
-				width: 36px;
-				height: 36px;
-				margin-right: 8px;
+				width: 30px;
+				height: 30px;
+				margin-right: 6px;
 			}
+
+			// span.name {
+			// 	position: relative;
+			// 	top: 1px;
+			// }
 		}
 
 		th.pct-bar, td.pct-bar {
@@ -78,7 +86,6 @@
 			text-align: right;
 			padding-right: 4px;
 		}
-
 
 	}
 
@@ -191,10 +198,16 @@
 			border-top: none;
 		}
 
-		td.pct, td.votes, td.del {
-			display: none;
+		td.pct, td.votes, td.del, td.pct-bar {
+			//display: none;
 		}
 
 	}
 
+}
+
+.table-col.no-expand {
+	tr.others td {
+		border-top: 1px solid #e9e7e5;
+	}
 }

@@ -1,19 +1,10 @@
-<%//removeIf(mediaOut)%>
-    <div class="mediaOut">
-
-<!--     content you want to get rid of.  -->
-    
-    </div>
-<%//endRemoveIf(mediaOut)%>
-
-
 <div class="container">
-    <div id="taskbar-container">
+    <div id="taskbar-container" class="mediaOut">
     </div>
     <div class="row">
         <div class="col-12 header">
-            <div class="graphic-title"><%= gettext("Iowa")%></div>
-            <p class="graphic-subhead"><%= gettext("Live Caucus Results | Feb. 3, 2020")%> </p>
+            <div class="graphic-title"><%= gettext(t.config.stateName)%></div>
+            <p class="graphic-subhead"><%= gettext(t.config.subhead)%> </p>
             <p class="timestamp"></p>
             <!-- TIME STAMP AND COUNTER FOR MOBILE -->
             <div class="timing-mobile hidden-sm-up">
@@ -32,8 +23,7 @@
          
         <div class="col-sm-12 dem-head">
             <div>
-
-                <p class="party"><%= gettext("Democratic Caucuses")%></p>
+                <p class="party"><%= gettext(t.config.demDisplay)%></p>
             </div>
             <!-- TIME STAMP AND COUNTER FOR DESKTOP -->
             <div class="hidden-xs-down">
@@ -49,47 +39,46 @@
         <div class="col-12">
             <div class="vertical-separator hidden-sm-down"></div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-6 table-col">
             <div class="reuters-chart">
                 <div class="reuters-chart table-div"></div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="reuters-chart chart"></div>
+        <div class="col-md-6 col-sm-6 map-col">
+            <div class="chart-map chart"></div>
         </div>
         <div class="col-md-12 col-lg-8 note-block">
-            <p class="graphic-source">The Iowa Democratic Party reported alignment numbers in 2020 in addition to State Delegate Equivalents (SDEs). &#8220;Final alignment&#8221; represents the number of people who caucused for each candidate in the final round after caucus-goers who lined up with candidates who failed to reach at least 15 percent in the first round are allowed to change groups.</p>
-            <p class="graphic-source">Candidate order and percentage are based on State Delegate Equivalents (SDEs), which are the estimated number of state convention delegates each candidate receives based on final alignment. Results are reported by Edison Research for the National Election Pool, which calls the winner.</p>
+            <p class="graphic-source note">Notes: New Hampshire election results are reported at the township level. Townships with no polling places are indicated in dark gray; Michael Bloomberg missed the Nov. 15 filing deadline and is not on the ballot.</p>
         </div>
     </div>
 
     <div class="row rep-row">
         <div class="col-sm-12 rep-head">
-            <p class="party"><%= gettext("Republican Caucuses")%></p>
+            <p class="party"><%= gettext(t.config.repDisplay)%></p>
         </div>
         <div class="col-12">
             <div class="vertical-separator hidden-sm-down"></div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-6 col-6 table-col">
             <div class="reuters-chart">
                 <div class="reuters-chart table-div"></div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <div class="reuters-chart chart"></div>
+        <div class="col-md-6 col-sm-6 col-6 map-col">
+            <div class="chart-map chart"></div>
         </div>
         <div class="col-md-12 col-lg-8 note-block">
-            <p class='graphic-source'>The Republican Party conducts a straw poll at every precinct caucus. The results of the straw poll are the only numbers reported for the Republican Caucuses.</p>
+            <p class='graphic-source note'>Note: New Hampshire election results are reported at the township level. Townships with no polling places are indicated in gray.</p>
         </div>
     </div>
         
     <div class="row">            
         <div class="col-md-12 col-lg-8 note-block mt-1">
-            <p class="graphic-source"><%= gettext("Source: Edison Research for the National Election Pool")%><br /><%= gettext("By Chris Canipe, Ally J. Levine and Sam Hart | REUTERS GRAPHICS")%></p>
+            <p class="graphic-source"><%= gettext("Source: Edison Research for the National Election Pool")%><br /><span class='byline'><%= gettext("By Chris Canipe, Ally J. Levine and Sam Hart | REUTERS GRAPHICS")%></span><span class='embed-byline'>REUTERS GRAPHICS</span></p>
         </div>
     </div>
 </div>
 <div id="reutersGraphic-footer"></div>
-<div id="related"></div>
+<div id="related" class="mediaOut"></div>
 
 

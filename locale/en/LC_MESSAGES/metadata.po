@@ -11,22 +11,22 @@ msgid "share-image"
 msgstr "share-card.png"
 
 msgid "seoHeadline"
-msgstr "Live results from the Iowa caucuses"
+msgstr "Live results from the New Hampshire primary"
 
 msgid "page_byline"
 msgstr "Chris Canipe"
 
 msgid "page_created"
-msgstr "2020-02-04T22:44:43.000+00:00"
+msgstr "2020-02-06T21:07:24.000+00:00"
 
 msgid "page_modified"
-msgstr "2020-02-06T15:07:55.328Z"
+msgstr "2020-02-07T21:25:10.702Z"
 
 msgid "headline"
-msgstr "Iowa caucuses results"
+msgstr "New Hampshire primary results"
 
 msgid "description"
-msgstr "Live results from the Iowa caucuses"
+msgstr "Live results from the New Hampshire primary"
 
 msgid "page_url"
-msgstr "https://graphics.reuters.com/USA-ELECTION-IA-CAUCUS-LIVE/0100B5CE3DR/"
+msgstr "https://graphics.reuters.com/USA-ELECTION-NH-PRIMARY-LIVE/0100B5D13FF/"

@@ -1,0 +1,77 @@
+.embed-byline {
+	display: none;
+}
+
+body.pym {
+
+	.embed-byline {
+		display: inline-block;
+	}
+
+	.byline {
+		display: none;
+	}
+
+	.note {
+		display: none;
+	}
+
+	.reuters-chart {
+		margin: 0;
+	}
+
+	.note-block {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		padding-right: 0 !important;
+		margin: 0;
+	}
+
+	.embed-byline {
+		display: inline-block;
+	}
+
+	.col-12.header {
+		display: inline-block;
+		width: 100%;
+
+		.graphic-title {
+			width: 100%;
+			font-size: 2rem;
+			margin-top: 0;
+		}
+
+		.graphic-subhead {
+			font-size: .9rem;
+			margin-top: 10px;
+		}
+	}
+
+	p.party {
+		margin-bottom: 10px;
+		font-size: 1rem;
+	}
+
+	@include media-breakpoint-down(sm){
+        div.chart-map {
+        	max-width: 400px;
+        	margin: 0 auto;
+        }
+    }	
+
+}
+
+.container.table-only {
+	.map-col {
+		display: none;
+	}
+
+	.table-col {
+		width: 100% !important;
+		display: inline-block !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+		padding-right: 0 !important;
+	}
+}

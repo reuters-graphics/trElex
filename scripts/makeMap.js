@@ -12,14 +12,17 @@ let topojson = require("topojson-client");
 import theCities from "../data/cities.json";
 import statePlanes from "../data/statePlanes_fips.json";
 import setTooltip from "./tooltip.js";
-import theCounties from "../data/states/counties-19.topo.json";
-import * as elexUtils from "./elexUtils.js";
+
+import trElex from "./trElex.js";
+
+
 
 export default class makeMap {
 
     constructor(opts) {
         Object.assign(this, opts);
 
+        //Should be passed as an argument. Determines size of state map.
         this.aspectHeight = opts.aspectHeight ? opts.aspectHeight : 0.68;
 
         this._setData();
@@ -41,8 +44,8 @@ export default class makeMap {
         this.fipsLookup = {};
         this.countyLookup = {};
 
-        this.stateTopo = topojson.feature(theCounties, theCounties.objects.states);
-        this.countyTopo = topojson.feature(theCounties, theCounties.objects.counties);
+        this.stateTopo = topojson.feature(this.geoData, this.geoData.objects.states);
+        this.countyTopo = topojson.feature(this.geoData, this.geoData.objects.counties);
 
         this.countyTopo.features.forEach(d => {
             let name = d.properties["NAME"].toUpperCase();
@@ -58,6 +61,15 @@ export default class makeMap {
             bottom: 10,
             left: 10
         };
+
+        this.isSmall = this.element.offsetWidth <= 400;
+
+        console.log(this.isSmall)
+        console.log(this)
+
+        if (this.isSmall && this.smAspectHeight) {
+            this.aspectHeight = this.smAspectHeight;
+        }
 
         this.width = this.element.offsetWidth - this.margin.left - this.margin.right;
         this.height = (this.element.offsetWidth * this.aspectHeight) - this.margin.top - this.margin.bottom;
@@ -78,7 +90,7 @@ export default class makeMap {
 
         this.tooltip = new setTooltip({
             element: this.element,
-            elexUtils: elexUtils,
+            elexUtils: trElex.elexUtils,
             candidates: this.candLookup,
             raceName: this.raceName
         });
@@ -90,7 +102,6 @@ export default class makeMap {
         this.lbls = this.svg.append("g").attr("class", "lbls-g");
 
         /* TIE PATTERN */
-
         this.defs = this.svg.append("defs");
 
         this.tie = this.defs
@@ -114,8 +125,6 @@ export default class makeMap {
             .attr("stroke-width", 2);
 
         /* END TIE PATTERN */
-
-
         this.key = d3.select(this.element).append("div")
             .attr("class", "key")
 
@@ -182,19 +191,22 @@ export default class makeMap {
             .style("fill", d => {
 
                 let geoid = d.properties["GEOID"];
+
                 let countyData = raceData[geoid] ? raceData[geoid][this.raceName] : null;
 
-                if (!countyData) {
-                    return elexUtils.getCandidateColor("NO RESULTS");
+                if (!raceData[geoid]) {
+                    return trElex.elexUtils.getCandidateColor("NO POLLING PLACES");
+                } else if (!countyData) {
+                    return trElex.elexUtils.getCandidateColor("NO RESULTS");
                 }
 
-                let leaderID = countyData.candidates[0].candID;
+                let leaderID = countyData.candidates[0].cId;
                 let leaderVotes = countyData.candidates[0]["P"];
                 let secondVotes = countyData.candidates[1]["P"];
                 let lastName = this.data.candidates[leaderID][2];
 
                 if (leaderVotes == 0) {
-                    return elexUtils.getCandidateColor("NO RESULTS");
+                    return trElex.elexUtils.getCandidateColor("NO RESULTS");
                 } else {
 
                     if (leaderVotes === secondVotes) {
@@ -210,7 +222,7 @@ export default class makeMap {
                     if (lastName === "Tie") {
                         return "url(#tie)"
                     } else {
-                        return elexUtils.getCandidateColor(lastName);
+                        return trElex.elexUtils.getCandidateColor(lastName);
                     }
                 }
 
@@ -295,7 +307,7 @@ export default class makeMap {
 
         keyItem.append("span")
             .attr("class", "swatch")
-            .style("background", key => elexUtils.getCandidateColor(key));
+            .style("background", key => trElex.elexUtils.getCandidateColor(key));
 
         keyItem.selectAll(".swatch")
             .filter(key => {

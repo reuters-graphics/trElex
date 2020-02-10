@@ -6,7 +6,7 @@ const d3 = Object.assign({},
     require("d3-scale")
 );
 
-import * as elexUtils from "./elexUtils.js";
+import trElex from "./trElex.js";
 
 export default class makeTable {
 
@@ -14,11 +14,10 @@ export default class makeTable {
         Object.assign(this, opts);
 
         this.colKeys = this.colKeys ? this.colKeys : {
-            "P": "Votes",
-            "P2": "Final align.",
+            "P": "Votes" //May need to change for caucuses
         }
 
-        this.collapsed = true; //
+        this.collapsed = true;
 
         this._setData();
         this._setDimensions();
@@ -44,9 +43,6 @@ export default class makeTable {
             this.raceCalls = {};
         }
 
-        // this.reportingVals = this.data.results[this.stateFips][this.raceName][0][3];
-        // this.callStatus = this.data.results[this.stateFips][this.raceName][0][2];
-
         //Max value for bars in tables.
         this.xMax = d3.max(this.series, d => {
             return d["P"] / this.statewide.totals["P"];
@@ -58,11 +54,11 @@ export default class makeTable {
         if (this.series[0]["P"] == 0) {
             this.series = this.series.sort((a, b) => {
 
-                let aLast = this.candLookup[a.candID][2];
-                let bLast = this.candLookup[b.candID][2];
+                let aLast = this.candLookup[a.cId][2];
+                let bLast = this.candLookup[b.cId][2];
 
-                let aPos = elexUtils.defaultOrder.indexOf(aLast) >= 0 ? elexUtils.defaultOrder.indexOf(aLast) : 999;
-                let bPos = elexUtils.defaultOrder.indexOf(bLast) >= 0 ? elexUtils.defaultOrder.indexOf(bLast) : 999;
+                let aPos = trElex.elexUtils.defaultOrder.indexOf(aLast) >= 0 ? trElex.elexUtils.defaultOrder.indexOf(aLast) : 999;
+                let bPos = trElex.elexUtils.defaultOrder.indexOf(bLast) >= 0 ? trElex.elexUtils.defaultOrder.indexOf(bLast) : 999;
 
                 return aPos - bPos;
 
@@ -83,10 +79,10 @@ export default class makeTable {
 
         let el = d3.select(this.element).node();
 
-        this.w = 60;
-        this.h = 18;
+        this.w = 60; //Max width available for bars.
+        this.h = 18; //Bar height
 
-        this.isSmall = this.element.offsetWidth <= 450;
+        this.isSmall = this.element.offsetWidth <= 400;
         // d3.select(this.element).classed("is-small", this.isSmall);
 
         this.width = this.w - this.margin.left - this.margin.right;
@@ -107,9 +103,9 @@ export default class makeTable {
             candFirst = candFirst ? "" : candFirst;
         }
 
-        return `${candFirst} ${candLast}`;
+        let nameString = `${candFirst} ${candLast}`;
 
-        //return `${candFirst} ${candLast}`;
+        return nameString.trim();
     }
 
     appendElements() { //ONLY GETS FIRED ON LOAD
@@ -117,14 +113,10 @@ export default class makeTable {
         this.wrapper = d3.select(this.element);
 
         //OTHER BUTTON
-        //removed btn-light class
-
         let expand = `<button type="button" class="btn btn-sm other-btn">
-                                Others
-                                <img src="./images/dropdown-arrow.svg" class="dropdown-arrow">
-                            </button>`
-
-
+                            Others
+                            <img src="./images/dropdown-arrow.svg" class="dropdown-arrow">
+                        </button>`;
 
         let otherButton = expand;
 
@@ -134,26 +126,25 @@ export default class makeTable {
             class: "cand",
             tdWrite: (d, elem) => {
 
-                let candId = d.candID;
+                let candId = d.cId;
                 let candObj = this.data.candidates[candId] ? this.data.candidates[candId] : null;
                 let candDisplay = this.getCandidateName(candObj);
 
                 let candLast = candObj ? candObj[2] : "Other";
-                let color = elexUtils.getCandidateColor(candLast);
+                let color = trElex.elexUtils.getCandidateColor(candLast);
                 let slug = slugify(candLast);
                 let pseudo = d3.select(document.createElement('div'));
 
-                if (elexUtils.hasPhoto[candLast]) {
+                if (trElex.elexUtils.hasPhoto[candLast]) {
                     pseudo.append("span")
                         .attr("class", `img ${slug}`)
                         .style("background-color", color)
                         .append("img")
-                        .attr("src", `./images/bw/${slug}-bw.png?v=1`);
+                        .attr("src", `./images/bw/${slug}.png`);
                 }
 
-
-
                 pseudo.append("span")
+                    .attr("class", "name")
                     .html(candDisplay.trim())
 
                 if (this.raceCalls.status === "W" && this.raceCalls.leadCand === candId) {
@@ -174,6 +165,12 @@ export default class makeTable {
 
                 if (!candObj && this.limit) {
                     markup = otherButton;
+                }
+
+                if (!this.tableExpand && d.cId == "Others" && d.count) {
+                    markup = `<td class="cand">
+                                    <span>${d.count} others</span>
+                                </td>`;
                 }
 
                 d3.select(elem).html(markup);
@@ -227,10 +224,10 @@ export default class makeTable {
             tdWrite: (d, elem) => {
 
                 let val = d["P"] / this.statewide.totals["P"];
-                let candId = d.candID;
+                let candId = d.cId;
                 let candObj = this.data.candidates[candId] ? this.data.candidates[candId] : null;
                 let candLast = candObj ? candObj[2] : "Other";
-                let color = elexUtils.getCandidateColor(candLast);
+                let color = trElex.elexUtils.getCandidateColor(candLast);
 
                 let pseudo = d3.select(document.createElement('div')); //Empty floating div
                 let svg = pseudo.append("svg");
@@ -305,11 +302,13 @@ export default class makeTable {
         //and group the "Others" together in a single row with "show more" button.
         if (this.collapsed && this.limit) {
 
-            let other = {};
+            let other = {
+                count: 0
+            };
 
             let keys = Object.keys(this.series[0])
                 .filter(key => {
-                    return key !== "candID" && key !== "Q";
+                    return key !== "candID";
                 })
 
             keys.forEach(key => {
@@ -322,6 +321,8 @@ export default class makeTable {
                     keys.forEach(key => {
                         other[key] += d[key];
                     })
+
+                    other.count++;
                 }
 
             })
@@ -337,15 +338,15 @@ export default class makeTable {
 
         this.tr = this.tableBody.selectAll('tr')
             .data(this.series, d => {
-                return d.candID; //Key by candidate ID (1st value in the array).
+                return d.cId; //Key by candidate ID (1st value in the array).
             });
 
         this.tr.enter().append("tr")
             .attr('class', (d, i) => {
 
-                let candObj = this.data.candidates[d.candID] ? this.data.candidates[d.candID] : null;
+                let candObj = this.data.candidates[d.cId] ? this.data.candidates[d.cId] : null;
                 let candLast = candObj ? candObj[2] : "Other";
-                let slug = d.candID === "Others" ? "others" : slugify(candLast);
+                let slug = d.cId === "Others" ? "others" : slugify(candLast);
 
                 return `table-tr tr-${i} ${slug}`;
             })
@@ -428,7 +429,6 @@ function pad(n, width, z) {
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
-
 
 function slugify(text) {
     return text.toString().toLowerCase()

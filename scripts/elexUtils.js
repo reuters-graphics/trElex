@@ -2,10 +2,11 @@ const d3 = Object.assign({},
     require("d3-time-format")
 );
 
-export const defaultOrder = ["Trump", "Walsh", "Weld", "Biden", "Sanders", "Warren", "Bloomberg", "Buttigieg", "Yang", "Klobuchar", "Steyer", "Gabbard", "Bennet", "Booker"];
+export const defaultOrder = ["Trump", "Walsh", "Weld", "Biden", "Sanders", "Warren", "Bloomberg", "Buttigieg", "Klobuchar", "Yang", "Steyer", "Gabbard", "Bennet", "Patrick", "Delaney", "Booker", "Harris", "Castro", "Williamson"];
 
 export const candColors = {
-    "NO RESULTS": "elex-light-gray",
+    "NO RESULTS": "elex-lightest-gray",
+    "NO POLLING PLACES": "elex-light-gray",
     "Biden": "elex-blue",
     "Sanders": "elex-yellow",
     "Buttigieg": "elex-green",
@@ -26,7 +27,7 @@ export const candColors = {
     "Bloomberg": "elex-teal",
     "Trump": "elex-orange",
     "Weld": "elex-yellow",
-    "Walsh": "elex-gray"
+    "Walsh": "elex-red"
 }
 
 export const hasPhoto = {
@@ -65,7 +66,8 @@ export const colors = {
     "elex-teal": "rgb(0,178,148)",
     "white": "rgb(255, 255, 255)",
     "elex-gray": "rgb(147, 149, 152)",
-    "elex-light-gray" : "rgb(239,239,239)"
+    "elex-lightest-gray": "rgb(239,239,239)",
+    "elex-light-gray": "#c7c7c7"
 }
 
 
@@ -112,12 +114,12 @@ export function lpad(n) {
 }
 
 export function checkParam(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
 
-  let results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return "";
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+    let results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
