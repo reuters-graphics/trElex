@@ -62,7 +62,7 @@
     "d3": "^5.7.0",
     "d3-selection-multi": "^1.0.1",
     "d3-svg-annotation": "^2.3.1",
-    "jquery": "3.3.1",
+    "jquery": "3.5.0",
     "lodash": "^4.17.11",
     "moment": "2.24.0",
     "popper.js": "1.14.7",
